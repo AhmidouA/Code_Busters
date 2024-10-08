@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { homeRouter } from "./new.router";
+import { homeRouter } from "./home.router";
 
 export const router = Router();
 
