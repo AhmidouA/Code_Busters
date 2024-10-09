@@ -21,6 +21,6 @@ export const verifyToken = async (
         next();
     } catch (error) {
         console.error("Error verifyToken", error);
-        res.status(401).json({ Message: "Token d'authentification invalide" });
+        res.status(401).json({ Message: "Token d'authentication invalide" });
     }
 };
