@@ -1,11 +1,13 @@
 import LoginCard from './components/loginCard';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
-    <div className="App" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <LoginCard />
-    </div>
+    <Routes>
+        <Route path="/" element={<LoginCard />}>
+        </Route>
+      </Routes>
   );
 }
 
