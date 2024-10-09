@@ -6,4 +6,4 @@ import { createUserValidator } from "../shared/validators";
 
 export const userRouter = Router();
 
-userRouter.post("/", createUserValidator, createUserController);
+userRouter.post("/register", createUserValidator, createUserController);
