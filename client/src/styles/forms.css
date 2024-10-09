@@ -1,3 +1,14 @@
+.form-box{
+    width: 30%;
+    border: solid 2px gray;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .form-box .form-details {
     text-align: center;
     display: flex;
@@ -6,12 +17,6 @@
     align-items: center;
 }
 
-.form-box{
-    width: 40%;
-    border: solid 2px gray;
-    border-radius: 10px;
-    box-shadow: 10px 5px 5px gray;
-}
 
 .form-box h2 {
     text-align: center;
@@ -82,8 +87,6 @@ form .input-field {
 .form-box a:hover {
     text-decoration: underline;
 }
-
-
 
 form button {
     width: 50%;
