@@ -18,9 +18,22 @@
     margin-bottom: 29px;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+input{
+    min-width: 8rem;
+}
+
 form .input-field {
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
     justify-content: center;
     gap: 1rem;
     align-items: center;
@@ -70,11 +83,7 @@ form .input-field {
     text-decoration: underline;
 }
 
-form :where(.forgot-pass-link, .policy-text) {
-    display: block;
-    margin-top: 13px;
-    font-size: 0.95rem;
-}
+
 
 form button {
     width: 50%;
