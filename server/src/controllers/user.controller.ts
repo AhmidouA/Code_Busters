@@ -54,7 +54,7 @@ export const createUserController = async (req: Request, res: Response) => {
 
         res.status(500).json({
             success: false,
-            error,
+            message: "Internal Server Error",
         });
     }
 };
@@ -80,7 +80,13 @@ export const loginUserController = async (req: Request, res: Response) => {
             expiresIn: "2h",
         });
 
-        res.status(201).json({ token, user });
+        res.status(201).json({
+            token,
+            firstName: user.first_name,
+            lastName: user.last_name,
+            id: user.id,
+            email: user.email,
+        });
     } catch (error) {
         console.error("Error login_register:", error);
         res.status(500).json({
