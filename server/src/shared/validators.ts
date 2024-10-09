@@ -4,6 +4,8 @@ import {
     firstNameValidator,
     lastNameValidator,
     passwordValidator,
+    emailValidatorLogin,
+    passwordValidatorLogin,
 } from "./user.validators";
 
 export const createUserValidator = [
@@ -13,3 +15,5 @@ export const createUserValidator = [
     passwordValidator,
     confirmPasswordValidator,
 ];
+
+export const loginUserValidator = [emailValidatorLogin, passwordValidatorLogin];

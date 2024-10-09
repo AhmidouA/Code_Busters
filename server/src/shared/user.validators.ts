@@ -48,3 +48,12 @@ export const confirmPasswordValidator = body("confirmPassword").custom(
         return true;
     }
 );
+
+export const emailValidatorLogin = body("email")
+    .isEmail()
+    .withMessage("Invalid email.")
+    .normalizeEmail();
+
+export const passwordValidatorLogin = body("password")
+    .notEmpty()
+    .withMessage("Password cannot be empty");

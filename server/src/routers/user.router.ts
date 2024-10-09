@@ -1,9 +1,13 @@
 import { Router } from "express";
 
-import { createUserController } from "../controllers/user.controller";
+import {
+    createUserController,
+    loginUserController,
+} from "../controllers/user.controller";
 
-import { createUserValidator } from "../shared/validators";
+import { createUserValidator, loginUserValidator } from "../shared/validators";
 
 export const userRouter = Router();
 
 userRouter.post("/register", createUserValidator, createUserController);
+userRouter.post("/login", loginUserValidator, loginUserController);

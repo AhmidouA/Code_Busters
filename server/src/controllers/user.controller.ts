@@ -1,6 +1,9 @@
-import bcrypt from "bcrypt";
-import { validationResult } from "express-validator";
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { validationResult } from "express-validator";
+
+import { loginType } from "shared/user.types";
 
 import prisma from "../config/prisma/db.config";
 
@@ -40,6 +43,7 @@ export const createUserController = async (req: Request, res: Response) => {
         });
     } catch (error: any) {
         if (error.code === "P2002") {
+            // errors Prisma P2002 (already exists)
             res.status(409).json({
                 success: false,
                 error: "User already exists",
@@ -51,6 +55,37 @@ export const createUserController = async (req: Request, res: Response) => {
         res.status(500).json({
             success: false,
             error,
+        });
+    }
+};
+
+export const loginUserController = async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const { email, password }: loginType = req.body;
+        const user = await prisma.user.findUnique({
+            where: {
+                email,
+            },
+        });
+        if (!user) res.status(400).json({ message: "User does not exist" });
+
+        const isMatch = await bcrypt.compare(password, user.password_hash);
+        if (!isMatch) res.status(400).json({ message: "Invlaid Password" });
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+            expiresIn: "2h",
+        });
+
+        res.status(201).json({ token, user });
+    } catch (error) {
+        console.error("Error login_register:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
         });
     }
 };
