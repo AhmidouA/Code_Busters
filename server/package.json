@@ -25,5 +25,8 @@
         "@types/cors": "^2.8.17",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5"
+    },
+    "prisma": {
+        "schema": "src/config/prisma/schema.prisma"
     }
 }
