@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../styles/forms.css'
+import { endpoints, requestAPI } from '../api/api';
 
 export default function LoginCard(){
     const [noCount, setNoCount]= useState(false);
@@ -24,22 +25,26 @@ export default function LoginCard(){
                     <h2>SIGN IN</h2>
                     <form action="#">
                         <div className="input-field">
-                            <input type="text" required/>
-                            <label>Name</label>
+                            <input type="text" value="John" required/>
+                            <label htmlFor='firstName'>First Name</label>
                         </div>
                         <div className="input-field">
-                            <input type="text" required/>
-                            <label>Email</label>
+                            <input type="text" value="Doe" required/>
+                            <label htmlFor='lastName'>Last Name</label>
                         </div>
                         <div className="input-field">
-                            <input type="password" required/>
-                            <label>Password</label>
+                            <input type="text" value="johndoe@email.net" required/>
+                            <label htmlFor='email'>Email</label>
                         </div>
                         <div className="input-field">
-                            <input type="password" required/>
+                            <input type="password" value="password" required/>
+                            <label htmlFor='password'>Password</label>
+                        </div>
+                        <div className="input-field">
+                            <input type="password" value="password" required/>
                             <label>Repeat Password</label>
                         </div>
-                        <button type="submit">Sign</button>
+                        <button type="submit" onClick={()=>{requestAPI(endpoints.helloworld)}}>Sign</button>
                     </form>
                     <div className="bottom-link">
                         You have an account
