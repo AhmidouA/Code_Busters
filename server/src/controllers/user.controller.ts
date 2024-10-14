@@ -95,3 +95,26 @@ export const loginUserController = async (req: Request, res: Response) => {
         });
     }
 };
+
+export const getUserController = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const user = await prisma.user.findUnique({
+            where: { id: parseInt(id) },
+        });
+
+        if (!user) res.status(404).json({ message: "User Not Found" });
+        res.status(200).json({
+            id: user.id,
+            firstName: user.first_name,
+            lastName: user.last_name,
+            email: user.email,
+        });
+    } catch (error) {
+        console.error("Error user:", error);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
+    }
+};
