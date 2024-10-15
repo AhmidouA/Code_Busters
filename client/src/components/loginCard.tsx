@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../styles/forms.css'
-import { endpoints, requestAPI } from '../api/api';
+import { endpoints, requestAPI } from '../datas/api';
 
 export default function LoginCard(){
     const [noCount, setNoCount]= useState(false);
