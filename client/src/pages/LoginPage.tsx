@@ -7,7 +7,7 @@ export default function LoginPage(){
     return (
         <>
             <NavBar />
-            <PageWrapper title="Login page">
+            <PageWrapper >
                 <LoginCard />
             </PageWrapper>
         </>
