@@ -1,6 +1,8 @@
 
 export const endpoints = {
-    user: "user",
+    login: "api/user/login",
+    register: "api/user/regisrer",
+    profil: "api/user/profil/{id}",
     helloworld: "api/",
 }
 
@@ -13,7 +15,7 @@ export const endpoints = {
  * @param datas object for method POST body
  * @returns result of request (will probably change to update the context)
  */
-export  function requestAPI(endpoint: string, datas?: Object){
+export  function requestAPI(endpoint: string, datas?: Object, id?: string){
     let url = `http://localhost:3006/${endpoint}`;
     let options: RequestInit = {
         method: "GET",
@@ -23,18 +25,17 @@ export  function requestAPI(endpoint: string, datas?: Object){
     }
     let result;
     
+    if(id){
+        url.replace('{id}', id);
+    }
+
     if(datas){
         options.method = 'POST';
         options.body = JSON.stringify(datas);
     }   
     
-    fetch(url, options)
-        .then(res => res.json())
-        .then(res => {
-                console.log(res.message)
-                result = res;
-            }
-        )
-        
-    return result;
+    return fetch(url, options)
 }
+        
+        
+    

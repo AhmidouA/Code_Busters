@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { UserContext, DatasContext } from './datas/context';
+import { UserContext, DatasContext, UserProvider } from './datas/context';
 import './style.css';
 import { useState } from 'react';
 import Dashboard from './pages/Dashboard';
@@ -20,15 +20,15 @@ const router = createBrowserRouter([
   ])
   
 export default function App() {
-  const [data, setData] = useState({});
-  const [user, setUser] = useState(null);
+  const [data, setData] = useState<any|null>({});
+  const [user, setUser] = useState<any|null>(null);
 
   return (
-    <UserContext.Provider value={user}>
+    <UserProvider>
       <DatasContext.Provider value={data}>
         <RouterProvider router={router} />
       </DatasContext.Provider>
-    </UserContext.Provider>
+    </UserProvider>
   );
 }
 
